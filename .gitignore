@@ -117,6 +117,9 @@ dist
 # DynamoDB Local files
 .dynamodb/
 
+#Firebase
+service-account.json
+
 # Firebase cache directory
 .firebase/
 
