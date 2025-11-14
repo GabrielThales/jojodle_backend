@@ -3,22 +3,27 @@
   "version": "1.0.0",
   "description": "O cérebro do Jojodle",
   "main": "lib/index.js",
-  "type": "module",
   "scripts": {
-    "build": "npx tsx src/index.ts",
-    "start": "cross-env GENKIT_ENV=dev npx genkit start",
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "build": "npx tsc",
+  "start": "npx tsx src/api.ts",
+  "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "@genkit-ai/core": "^1.0.0",
     "@genkit-ai/googleai": "^1.0.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.4.5",
+    "express": "^5.1.0",
     "firebase-admin": "^13.6.0",
+    "firebase-functions": "^7.0.0",
     "genkit": "^1.22.0",
     "zod": "^3.23.8"
   },
   "devDependencies": {
+    "@types/cors": "^2.8.19",
+    "@types/express": "^5.0.5",
     "@types/node": "^20.14.9",
+    "concurrently": "^9.2.1",
     "cross-env": "^10.1.0",
     "genkit-cli": "^1.22.0",
     "typescript": "^5.5.2"

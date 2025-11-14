@@ -17,4 +17,5 @@ export const ai = genkit({
   model: gemini20Flash
 });
 
+
 console.log("[LOG] 2. genkit.conf.ts - Instância 'ai' criada. Importando flows...");
