@@ -1,4 +1,5 @@
 import * as admin from 'firebase-admin';
+import { ServiceAccount } from 'firebase-admin';
 
 const serviceAccount = require('../service-account.json');
 
@@ -19,6 +20,37 @@ if (!admin.apps.length) {
         admin.initializeApp();
     }
 }
+
+// --- INICIALIZAÇÃO DO FIREBASE (NOVA LÓGICA) ---
+const initializeFirebase = async () => {
+  if (admin.apps.length === 0) {
+    
+    // 1. Tentar ler a variável de ambiente do Vercel
+    const b64 = process.env.FIREBASE_SERVICE_ACCOUNT_BASE64;
+
+    let serviceAccount: ServiceAccount;
+
+    if (b64) {
+      // ESTAMOS EM PRODUÇÃO (VERCEL)
+      console.log("[LOG] Lendo Service Account a partir da variável Base64...");
+      const decodedString = Buffer.from(b64, 'base64').toString('utf8');
+      serviceAccount = JSON.parse(decodedString) as ServiceAccount;
+    } else {
+      // ESTAMOS EM DESENVOLVIMENTO (LOCAL)
+      console.log("[LOG] Lendo Service Account do ficheiro local (service-account.json)...");
+      // Importa o ficheiro local (só funciona em dev)
+      const localAccount = await import('../service-account.json', { with: { type: 'json' } });
+      serviceAccount = localAccount.default as ServiceAccount;
+    }
+
+    admin.initializeApp({
+      credential: admin.credential.cert(serviceAccount)
+    });
+    console.log("[LOG] 2.1. genkit.conf.ts - Firebase Admin INICIALIZADO.");
+  }
+};
+
+initializeFirebase();
 
 export const db = admin.firestore();
 
