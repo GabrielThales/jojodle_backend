@@ -31,7 +31,7 @@ const app = express();
 
 // 2. Usar Middlewares
 // O seu frontend vai estar em, por exemplo, "https://meu-jojodle.com"
-const whitelist = ['https://jojodle-blond.vercel.app/'];
+const whitelist = ['https://jojodle-blond.vercel.app/', 'http://127.0.0.1:5500'];
 
 const corsOptions: CorsOptions = {
   origin: (origin: string | undefined, callback: (err: Error | null, allow?: boolean) => void) => {
