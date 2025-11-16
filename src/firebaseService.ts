@@ -1,25 +1,12 @@
 import * as admin from 'firebase-admin';
 import { ServiceAccount } from 'firebase-admin';
 
-const serviceAccount = require('../service-account.json');
+//onst serviceAccount = require('../service-account.json');
 
 console.log("[LOG] firebaseService.ts - Iniciando Firebase...");
 //const serviceAccountJson = process.env.FIREBASE_SERVICE_ACCOUNT_JSON;
 
 console.log("[LOG] firebaseService.ts - serviceAccount carregado.");
-
-
-if (!admin.apps.length) {
-    if (serviceAccount) {
-        // If you store the service account JSON in an env var
-        admin.initializeApp({
-            credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-        });
-    } else {
-        // Use GOOGLE_APPLICATION_CREDENTIALS or ADC otherwise
-        admin.initializeApp();
-    }
-}
 
 // --- INICIALIZAÇÃO DO FIREBASE (NOVA LÓGICA) ---
 const initializeFirebase = async () => {
