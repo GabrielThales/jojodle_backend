@@ -122,6 +122,8 @@ app.post('/getJojoTip', async (req, res) => {
   }
 });
 
+export default app;
+
 const PORT = 3000;
 
 // Mandar o Express "ouvir" nessa porta
