@@ -2,7 +2,7 @@
   "name": "jojodle_backend",
   "version": "1.0.0",
   "description": "O cérebro do Jojodle",
-  "main": "lib/index.js",
+  "main": "lib/api.js",
   "scripts": {
   "build": "npx tsc",
   "start": "npx tsx src/api.ts",
